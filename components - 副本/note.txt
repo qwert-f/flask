@@ -1,0 +1,9 @@
+cryptography is required for sha256_password or caching_sha2_password
+报该错的原因是缺少需要的包
+pip install cryptography
+执行该命令即可解决问题
+
+
+数据库连接池问题
+解决方案，在setting.py中设置，即当前执行的操作
+或者按照pools.py注释的方式(同时需要解除init.py中的init_pool的注释)进行解决

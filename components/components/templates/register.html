@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Register</title>
+</head>
+<body>
+  <form method="post">
+    {% for item in form %}
+   <p>{{item.label}}: {{item}} {{item.errors[0] }}</p>
+   {% endfor %}
+   <input type="submit" value="提交">
+  </form>
+   <!-- 显示的顺序，由内部计数器实现顺序(先定义先显示) -->
+</body>
+</html>

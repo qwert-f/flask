@@ -1,0 +1,16 @@
+Project
+    ---dir
+        ---templates
+        ---view
+            ---user.py(from flask import Blueprint)
+            ---account.py
+            .....
+        ---static
+        ---__init__.py(创建flask的应用程序)
+    ---manage.py(启动文件)
+除了上面的目录结构，蓝图也可以在每一个独立的文件夹项目下建一个模板和视图文件夹
+蓝图的作用：
+          1.目录结构的划分
+          2.url的划分(前缀)
+          3.注册静态路由(url_prefix)
+          4.设置静态文件和模板的目录(template_folder,static_folder)

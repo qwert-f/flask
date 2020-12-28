@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+<!-- 使用模板layout.html文件 -->
+{% block content %}
+  {{ a1 }}
+  {{ a2.0 }} {{ a2[0] }}
+  {{ a3.name }} {{ a3['name'] }} {{ a3.get('name', 666) }}
+  {{ a4(666) }}<br/>
+  <!-- {{ a5(666)|safe }} {# 防止xss攻击，确保数据安全 #} -->
+  {{ a5(666) }}
+  {{ globals(666) }}
+{% endblock %}

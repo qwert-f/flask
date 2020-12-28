@@ -1,0 +1,19 @@
+cryptography is required for sha256_password or caching_sha2_password
+报该错的原因是缺少需要的包
+pip install cryptography
+执行该命令即可解决问题
+
+
+数据库连接池问题
+解决方案一，在setting.py中设置，即当前执行的操作
+或者按照pools.py注释的方式(同时需要解除init.py中的init_pool的注释)进行解决
+方法二：将从utils中导入POOL放到sql.py中的openSQL函数内部
+数据库连接池的两种模式
+  --每个线程创建一个连接，默认不关闭，线程终止时，才关闭
+  -- 创建共享连接池
+
+Exception: Install 'email_validator' for email validation support.
+没安装email_validator
+pip install email_validator即可解决问题
+
+静态字段在第一次加载的时候只执行一次

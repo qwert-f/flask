@@ -1,0 +1,24 @@
+项目依赖  pip install pipreqs
+    --生成依赖文件：pipreqs ./
+    --安装依赖文件：pip install -r requirements.txt
+
+函数和方法
+    --单独写(没有类)的一般是函数
+    --类里的，如果通过对象调用则是方法，类调用则是函数
+    --from type import MethodType,FunctionType;通过instanceof来判断
+
+面向对象：特殊方法
+    --obj['x'] = 123
+    --obj.x = 123
+    --obj + 123
+
+functools
+    --参见test12.py
+    --传参
+        def func(a, b, c)
+            return a1+a2+a3
+        var1 = func(1, 2, 3)
+        new_func = functools.partial(func, 12)
+        new_func = functools.partial(func, 12, 34)
+        new_func(34, 56)
+        new_func(56)
