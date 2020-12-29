@@ -16,6 +16,37 @@ class Config(object):
     # DATABASE_URI = 'sqlite://memory:'
     # 将session设置为redis版本的
     SESSION_TYPE = 'redis'
+    # SESSION_REDIS = Redis(host='127.0.0.1', port='6379', password='redis1')
+    # PYMYSQL_HOST = '127.0.0.1'
+
+
+class ProductionConfig(Config):
+    # DATDATABASE_URI = 'mysql://root@localhost:3306/components'
+    SESSION_REDIS = Redis(
+        host='127.0.0.1', port='6379', password='aws@ubuntu')
+    PYMYSQL_POOL = PooledDB(
+        creator=pymysql,
+        maxconnections=6,
+        mincached=2,
+        maxcached=5,
+        maxshared=3,
+        blocking=True,
+        maxusage=None,
+        setsession=[],
+        ping=0,
+        host='127.0.0.1',
+        port=3306,
+        user='root',
+        password='aws@ubuntu',
+        database='flask',
+        charset='utf8'
+    )
+
+
+class DevelopmentConfig(Config):
+    # DEBUG = True
+    SESSION_REDIS = Redis(
+        host='127.0.0.1', port='6379', password='redis1')
     PYMYSQL_POOL = PooledDB(  # 方法1.2
         creator=pymysql,  # 使用链接数据库的模块
         maxconnections=6,  # 连接池允许的最大连接数，0和None表示不限制连接数
@@ -41,19 +72,6 @@ class Config(object):
         database='daily',
         charset='utf8'
     )
-    # SESSION_REDIS = Redis(host='127.0.0.1', port='6379', password='redis1')
-    # PYMYSQL_HOST = '127.0.0.1'
-
-
-class ProductionConfig(Config):
-    # DATDATABASE_URI = 'mysql://root@localhost:3306/components'
-    pass
-
-
-class DevelopmentConfig(Config):
-    # DEBUG = True
-    SESSION_REDIS = Redis(
-        host='127.0.0.1', port='6379', password='redis1')
 
 
 class TestingConfig(Config):
