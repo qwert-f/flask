@@ -5,8 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>首页</title>
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+  }
+    html,body {
+      width:100%;
+      height:100%;
+    }
+    .header,.content,.footer {
+      width:100%;
+     background-color:pink;
+    }
+    .header {
+      height:10%;
+    }
+    .content {
+      height:70%;
+    }
+    .footer {
+      height:20%;
+    }
+  </style>
 </head>
 <body>
-  首页,开始骚起来
+  <div class="header">
+    我是顶部
+    <a href="http://127.0.0.1:5000/login">跳转</a>
+  </div>
+  <div class="content">
+  我是内容
+  </div>
+  <div class="footer">
+    我是底部
+  </div>
 </body>
 </html>

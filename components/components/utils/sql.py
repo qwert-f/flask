@@ -1,6 +1,6 @@
 import pymysql
-# from flask import current_app  # 方法1
-from settings import Config
+from flask import current_app  # 方法1
+# from settings import Config
 
 
 class SQLHelper(object):
@@ -10,8 +10,8 @@ class SQLHelper(object):
         # conn = pymysql.connect(host='127.0.0.1', port=3306,
         #                        user='root', password='sql1', db='daily')
         # cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
-        # POOL = current_app.config['PYMYSQL_POOL']     # 方法1.2
-        POOL = Config.PYMYSQL_POOL
+        POOL = current_app.config['PYMYSQL_POOL']     # 方法1.2
+        # POOL = Config().PYMYSQL_POOL
         conn = POOL.connection()
         # cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
         cursor = conn.cursor(cursor=cursor)

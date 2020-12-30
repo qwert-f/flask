@@ -24,23 +24,23 @@ class ProductionConfig(Config):
     # DATDATABASE_URI = 'mysql://root@localhost:3306/components'
     SESSION_REDIS = Redis(
         host='127.0.0.1', port='6379', password='aws@ubuntu')
-    PYMYSQL_POOL = PooledDB(
-        creator=pymysql,
-        maxconnections=6,
-        mincached=2,
-        maxcached=5,
-        maxshared=3,
-        blocking=True,
-        maxusage=None,
-        setsession=[],
-        ping=0,
-        host='127.0.0.1',
-        port=3306,
-        user='root',
-        password='aws@ubuntu',
-        database='flask',
-        charset='utf8'
-    )
+    # PYMYSQL_POOL = PooledDB(
+    #     creator=pymysql,
+    #     maxconnections=6,
+    #     mincached=2,
+    #     maxcached=5,
+    #     maxshared=3,
+    #     blocking=True,
+    #     maxusage=None,
+    #     setsession=[],
+    #     ping=0,
+    #     host='127.0.0.1',
+    #     port=3306,
+    #     user='root',
+    #     password='aws@ubuntu',
+    #     database='flask',
+    #     charset='utf8'
+    # )
 
 
 class DevelopmentConfig(Config):
