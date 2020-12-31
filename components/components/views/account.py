@@ -55,7 +55,7 @@ def login():
         session.permanent = True    # redis默认设置了为true
         # session['user_info'] = {'id': uid, 'name': user}
         session['user_info'] = {'id': obj['id'], 'name': obj['name']}
-        return redirect('/index')
+        return redirect('/')
     else:
         return render_template('login.html', msg='用户名或密码错误！', form=form)
 
