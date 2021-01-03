@@ -1,18 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
 </head>
 <body>
-  <form method="post">
+<form method="post">
     {% for item in form %}
-   <p>{{item.label}}: {{item}} {{item.errors[0] }}</p>
-   {% endfor %}
-   <input type="submit" value="提交">
-  </form>
-   <!-- 显示的顺序，由内部计数器实现顺序(先定义先显示) -->
+    <p>{{item.label}}: {{item}} {{item.errors[0] }}</p>
+    {% endfor %}
+    <canvas id="canvas" width="120" height="40"></canvas>
+    <br>
+    <input type="submit" value="提交"><br>{{ msgs}}
+</form>
+<!-- 显示的顺序，由内部计数器实现顺序(先定义先显示) -->
+
+<script type="text/javascript">
+    function confirm_code(selector,w,h){
+        function setRand(min,max){
+        // 随机数的生成函数
+          return parseInt(Math.random()*(max-min)+min)
+        }
+        // 随机生成颜色
+        function setColor(min,max){
+          var r = setRand(min,max)
+          var g = setRand(min,max)
+          var b = setRand(min,max)
+          // return 'rgb(120,120,120)'
+          return 'rgb('+r+','+g+','+b+')'
+        }
+        var w = w;
+        var h = h;
+        var canvas = document.querySelector(selector);
+        var ctx = canvas.getContext('2d')
+        // 在canvas上绘制背景颜色
+        ctx.fillStyle = setColor(180,230)
+        ctx.fillRect(0,0,w,h)
+        // 随机字符串
+        var pool = '!@#$%^&*abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        var result = ''
+        for(var i=0;i<4;i++){
+          // 取出随机的字母或数字
+          var rand_char_num = pool[setRand(0,pool.length)]
+          // 随机书字体大小
+          var font_size = setRand(18,40)
+          // 随机数旋转的角度
+          var rotate_deg = setRand(-30,30)
+          ctx.font = font_size + 'px Simhei';
+          ctx.textBaseLine = 'top';
+          // 设置字体的填充颜色
+          ctx.fillStyle = setColor(80,150)
+          ctx.save()
+          ctx.translate(30*i+15,15);
+          ctx.rotate(rotate_deg*Math.PI/180);
+          ctx.fillText(rand_char_num,-7,12);  // 其中第一个数值控制左右移，第二个控制上下移
+          result += rand_char_num;
+          ctx.restore()
+        }
+        // 随机生成干扰线
+        for(var i=0;i<5;i++){
+          ctx.beginPath();
+          ctx.moveTo(setRand(0,w),setRand(0,h));
+          ctx.lineTo(setRand(0,w),setRand(0,h));
+          ctx.strokeStyle = setColor(150,240);
+          ctx.closePath();
+          ctx.stroke()
+        }
+        // 随机产生干扰圆点
+        for(var i=0;i<35;i++){
+          ctx.beginPath();
+          ctx.arc(setRand(0,w),setRand(0,h),1,0,2*Math.PI);
+          ctx.closePath();
+          ctx.fillStyle = setColor(100,245);
+          ctx.fill()
+        }
+        // console.log(result)
+        return result
+    }
+    let res_code = confirm_code('#canvas',120,40)
+    console.log(res_code)
+</script>
 </body>
 </html>

@@ -7,7 +7,6 @@ from wtforms.fields import html5
 from wtforms.fields import simple
 from wtforms import validators
 from wtforms import widgets
-from ..models import sql
 
 account = Blueprint('account', __name__)
 
@@ -70,7 +69,7 @@ class RegisterForm(Form):
         ],
         widget=widgets.TextInput(),
         render_kw={'class': 'form-control'},
-        # default='Emma'
+        default='Emma'
     )
 
     pwd = simple.PasswordField(
@@ -103,16 +102,6 @@ class RegisterForm(Form):
         ],
         widget=widgets.TextInput(input_type='email'),
         render_kw={'class': 'form-control'}
-    )
-
-    code = simple.StringField(
-        label='验证码',
-        validators=[
-            # validators.Length(min=8, message='用户名长度必须小于%(min)d'),
-            validators.DataRequired()
-        ],
-        widget=widgets.TextInput(),
-        render_kw={'class': 'form-control'},
     )
 
     # gender = core.RadioField(
@@ -187,15 +176,7 @@ def register():
         form = RegisterForm()
         return render_template('register.html', form=form)
     form = RegisterForm(formdata=request.form)
-    info = sql.cur.fetchall()
-    # print("".join(info[0]))
-    # print(form.name.data)
-    # print(type(info))
-    # print(type(form.name.data))
-    name = form.name.data
-    info = "".join(info[0])
-    # print(type(name),name)
-    if name != info:
+    if form.validate():
         # print(form.data)
         # 注册完成跳转登录页面
         return redirect(url_for('account.login'))
@@ -203,4 +184,4 @@ def register():
         # print(form.errors)
         # return redirect(url_for('account.register'), msgs="用户名已存在")
         # form = RegisterForm()
-        return render_template('register.html', form=form, msgs='用户名已存在')
+        return render_template('register.html', form=form)

@@ -17,3 +17,72 @@ Exception: Install 'email_validator' for email validation support.
 pip install email_validator即可解决问题
 
 静态字段在第一次加载的时候只执行一次
+
+flask和django的区别
+  --相同
+    --基于wsgi
+  --不同
+    --传值方式
+    --组件
+      --flask少
+      --django多
+flask上下文管理实现
+  --流程
+    - 请求刚进来，requestContext(request, session), AppContext(app, g) --> LocalStack --> Local
+    - 视图处理,LocalProxy -> 偏函数 -> LocalStack -> Local
+    - 请求结束, save_session -> LocalStack.pop()
+Local的作用
+  --用于保存
+    - 请求上下文对象
+    - app上下文对象
+  --并且可以做到“线程”间的数据隔离
+  线程：threading.lacol
+  协程：greenlet.get_current as get_indent
+LocalStack的作用
+  --将Local中保存的数据维护成一个栈
+flask内置功能
+  --配置
+  路由
+  视图
+  模板
+  session
+  蓝图
+  闪现
+  装饰器
+  中间件
+第三方组件
+  --flask相关
+    - flask-session 将原本保存在cookies中的数据，放到redis/memcache/文件、数据库中
+  --公共
+    - DBUtils 数据库连接池
+    - wtfform 表单验证，生成html标签
+
+    默认类由type实例化创建
+    某个类指定metaclass=xxx,那么当前类的所有派生类都有xxx创建
+    实例化对象
+      --type.__init__
+      type.__call__
+      类.__new__
+      类.__init__
+
+面向对象
+  -- 继承，封装，多态
+  -- 特殊功能
+    -双下划线的方法
+        - __mro__
+        - __dict__
+        - __new__
+        - __call__
+    - metaclass
+
+ORM框架
+  -- 关系对象映射
+    - 类 -> 表
+    - 对象 -> 记录(一行数据)
+
+SQLAlchemy
+  一个基于python实现的ORM框架，本身无法操作数据库，需要借助pymysql来实现
+  1.基于SQLAlchemy写原生SQL
+    --SQLAlchemy连接池
+    --DBUtils+pymysql连接池
+  2.基于SQLAlchemy写ORM
