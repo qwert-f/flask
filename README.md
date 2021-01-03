@@ -11,6 +11,7 @@
     WTForms==2.3.3
     DBUtils==2.0
     email-validator==1.1.2
+    sqlalchemy==1.3.20
 
 项目在迁移过程中使用了python的pipreqs来解决对项目中依赖的库的的快速安装
 对于pipreqs的使用
