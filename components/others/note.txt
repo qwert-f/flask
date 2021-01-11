@@ -86,3 +86,6 @@ SQLAlchemy
     --SQLAlchemy连接池
     --DBUtils+pymysql连接池
   2.基于SQLAlchemy写ORM
+
+
+  实际部署时需要修改home.html,__init__.py.models.py,settings.py

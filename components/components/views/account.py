@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, request, session, redirect, url_for, flash
+from flask import Blueprint, render_template, request, session, redirect
+from flask import url_for
+# , flash
 # from uuid import uuid4
 from ..utils.sql import SQLHelper
 from wtforms import Form
@@ -7,7 +9,8 @@ from wtforms.fields import html5
 from wtforms.fields import simple
 from wtforms import validators
 from wtforms import widgets
-from ..models import sql
+# from ..models import sql
+from components import models
 
 account = Blueprint('account', __name__)
 
@@ -187,17 +190,40 @@ def register():
         form = RegisterForm()
         return render_template('register.html', form=form)
     form = RegisterForm(formdata=request.form)
-    info = sql.cur.fetchall()
+    from sqlalchemy.orm import sessionmaker
+    from sqlalchemy import create_engine
+    engine = create_engine("mysql+pymysql://root:sql1@127.0.0.1:3306/daily")
+    database = sessionmaker(bind=engine)
+    Session = database()
+    info = Session.query(models.Users.name).filter_by(
+        name=form.name.data).first()
+    # print(info)
+    # info = sql.cur.fetchall()
     # print("".join(info[0]))
     # print(form.name.data)
     # print(type(info))
     # print(type(form.name.data))
-    name = form.name.data
-    info = "".join(info[0])
+    # name = form.name.data
+    # info = str(info[0])
+    # info = "".join(info[0])
     # print(type(name),name)
-    if name != info:
+    if not info:
+        # if name != info:
         # print(form.data)
         # 注册完成跳转登录页面
+        # from sqlalchemy.orm import sessionmaker
+        # from sqlalchemy import create_engine
+        # engine = create_engine("mysql+pymysql://root:sql1@127.0.0.1:3306/daily")
+        # database = sessionmaker(bind=engine)
+        # Session = database()
+        # user = [
+        #     # models.Users(name=name),
+        #     models.Users(name=form.name.data),
+        #     models.Users(pwd=form.pwd.data)
+        # ]
+        user = models.Users(name=form.name.data, pwd=form.pwd.data)
+        Session.add(user)
+        Session.commit()
         return redirect(url_for('account.login'))
     else:
         # print(form.errors)
