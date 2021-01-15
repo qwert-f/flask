@@ -51,8 +51,9 @@ for i in result1:
     print(i.nm)
 res1 = session.query(test32.Classes.name).filter_by(name='信息2班').all()
 res2 = session.query(test32.Classes.name).filter_by(name='信息2班').first()
-r6 = session.query(test32.Classes).filter(text("id<:value and name=:name")).params(
-    value=224, name='fred').order_by(test32.Classes.id).all()
+r6 = session.query(test32.Classes).filter(
+    text("id<:value and name=:name")).params(value=224, name='fred').order_by(
+    test32.Classes.id).all()
 # 子查询
 r7 = session.query(test32.Classes).from_statement(
     text("SELECT * FROM classes where name=:name")).params(name='ed')
@@ -61,7 +62,8 @@ r8 = session.query(test32.Classes).from_statement(
 ret = session.query(test32.Classes).filter(test32.Classes.id.in_(
     session.query(test32.Classes.id).filter_by(name='eric'))).all()
 # 关联子查询
-# subqry = session.query(func.count(Server.id).label("sid")).filter(Server.id == Group.id).correlate(Group).as_scalar()
+# subqry = session.query(func.count(Server.id).label("sid")).
+# filter(Server.id == Group.id).correlate(Group).as_scalar()
 # result = session.query(Group.name, subqry)
 print(res2, res1, r6, r7, r8, ret)
 
