@@ -47,7 +47,7 @@ class ProductionConfig(Config):
 class DevelopmentConfig(Config):
     # DEBUG = True
     SESSION_REDIS = Redis(
-        host='127.0.0.1', port='6379', password='redis1')
+        host='127.0.0.1', port='6379', password='')
     PYMYSQL_POOL = PooledDB(  # 方法1.2
         creator=pymysql,  # 使用链接数据库的模块
         maxconnections=6,  # 连接池允许的最大连接数，0和None表示不限制连接数
@@ -69,7 +69,7 @@ class DevelopmentConfig(Config):
         host='127.0.0.1',
         port=3306,
         user='root',
-        password='sql1',
+        password='sql@1',
         database='daily',
         charset='utf8'
     )

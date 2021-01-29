@@ -17,7 +17,7 @@ redis_store = None
 # 设置日志的记录等级
 logging.basicConfig(level=logging.WARNING)
 # 创建日志记录器，指明日志保存路径，每个日志文件大小，保存日志文件上限个数
-file_log_handler = RotatingFileHandler("logs/log",
+file_log_handler = RotatingFileHandler("../Daily/test/logs/log",
                                        maxBytes=1024*1024*100,
                                        backupCount=10)
 # 创建日志记录的格式
