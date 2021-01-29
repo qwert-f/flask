@@ -5,7 +5,7 @@ class Config(object):
     '''配置信息'''
     SECRET_KEY = 'logicout'
     '''数据库'''
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:sql@1@127.0.0.1:3306/Daily'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:sql1@127.0.0.1:3306/daily'
     SQLALCHEMY_TRACK_MODIFICATION = True
     '''redis'''
     REDIS_HOST = '127.0.0.1'

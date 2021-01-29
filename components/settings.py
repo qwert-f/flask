@@ -69,7 +69,7 @@ class DevelopmentConfig(Config):
         host='127.0.0.1',
         port=3306,
         user='root',
-        password='sql@1',
+        password='sql1',
         database='daily',
         charset='utf8'
     )
