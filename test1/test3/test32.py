@@ -3,6 +3,8 @@ from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy import create_engine, ForeignKey, UniqueConstraint
 import datetime
 
+from sqlalchemy.orm import relationship
+
 Base = declarative_base()
 
 
@@ -41,6 +43,8 @@ class Student(Base):
     pwd = Column(String(64), nullable=False)
     ctime = Column(DateTime, default=datetime.datetime.now)
     flask_id = Column(Integer, ForeignKey("classes.id"))
+    # 表关系,一张表可以多种关系，进行关联查询
+    cls = relationship('Classes', backref='stus')
 
 
 def init_db():
